@@ -1,46 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tubxok - Les vidéos en mieux</title>
+    <title>Tubxok - Vidéos pour tous</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
 </head>
 <body>
+    <!-- En-tête du site -->
     <header>
-        <div class="logo">
-            <h1>Tubxok</h1>
+        <div class="header-container">
+            <div class="logo">
+                <h1><a href="#accueil">Tubxok</a></h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#accueil" class="active">Accueil</a></li>
+                    <li><a href="#tendances">Tendances</a></li>
+                    <li><a href="#shorts">Shorts</a></li>
+                    <li><a href="#abonnements">Abonnements</a></li>
+                    <li><a href="#bibliotheque">Bibliothèque</a></li>
+                    <li><a href="#historique">Historique</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher des vidéos..." aria-label="Rechercher">
+                <button type="submit">🔍</button>
+            </div>
+            <div class="user-menu">
+                <a href="#connexion" class="connexion-btn">Se connecter</a>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#trending">Trending</a></li>
-                <li><a href="#subscriptions">Subscriptions</a></li>
-                <li><a href="#library">Library</a></li>
-            </ul>
-        </nav>
     </header>
+
+    <!-- Contenu principal -->
     <main>
-        <section id="home">
-            <h2>Home</h2>
-            <!-- Contenu des vidéos -->
+        <!-- Section Accueil -->
+        <section id="accueil" class="content-section">
+            <h2>Accueil</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <img src="thumbnail1.jpg" alt="Vignette 1">
+                    <h3>Titre de la vidéo 1</h3>
+                    <p>Description courte de la vidéo.</p>
+                </div>
+                <div class="video-card">
+                    <img src="thumbnail2.jpg" alt="Vignette 2">
+                    <h3>Titre de la vidéo 2</h3>
+                    <p>Description courte de la vidéo.</p>
+                </div>
+                <!-- Ajoutez plus de vidéos ici -->
+            </div>
         </section>
-        <section id="trending">
-            <h2>Trending</h2>
-            <!-- Contenu des vidéos tendance -->
+
+        <!-- Section Tendances -->
+        <section id="tendances" class="content-section">
+            <h2>Tendances</h2>
+            <div class="video-grid">
+                <!-- Contenu des vidéos tendances -->
+                <div class="video-card">
+                    <img src="thumbnail3.jpg" alt="Vignette tendance">
+                    <h3>Vidéo tendance 1</h3>
+                    <p>Description des tendances actuelles.</p>
+                </div>
+                <!-- Ajoutez plus de vidéos ici -->
+            </div>
         </section>
-        <section id="subscriptions">
-            <h2>Subscriptions</h2>
-            <!-- Contenu des abonnements -->
+
+        <!-- Section Shorts -->
+        <section id="shorts" class="content-section">
+            <h2>Shorts</h2>
+            <div class="shorts-grid">
+                <!-- Shorts au format court -->
+                <div class="short-card">
+                    <video src="short1.mp4" controls></video>
+                    <h3>Short 1</h3>
+                </div>
+                <div class="short-card">
+                    <video src="short2.mp4" controls></video>
+                    <h3>Short 2</h3>
+                </div>
+            </div>
         </section>
-        <section id="library">
-            <h2>Library</h2>
-            <!-- Contenu de la bibliothèque -->
+
+        <!-- Section Abonnements -->
+        <section id="abonnements" class="content-section">
+            <h2>Vos abonnements</h2>
+            <div class="video-grid">
+                <!-- Contenu des vidéos des abonnements -->
+            </div>
+        </section>
+
+        <!-- Section Bibliothèque -->
+        <section id="bibliotheque" class="content-section">
+            <h2>Bibliothèque</h2>
+            <div class="video-grid">
+                <!-- Contenu de la bibliothèque -->
+            </div>
+        </section>
+
+        <!-- Section Historique -->
+        <section id="historique" class="content-section">
+            <h2>Historique</h2>
+            <div class="video-grid">
+                <!-- Contenu de l'historique -->
+            </div>
         </section>
     </main>
+
+    <!-- Pied de page -->
     <footer>
-        <p>&copy; 2024 Tubxok. Tous droits réservés.</p>
+        <div class="footer-container">
+            <p>&copy; 2024 Tubxok. Tous droits réservés.</p>
+            <ul class="footer-links">
+                <li><a href="#conditions">Conditions d'utilisation</a></li>
+                <li><a href="#confidentialite">Politique de confidentialité</a></li>
+                <li><a href="#contact">Nous contacter</a></li>
+            </ul>
+        </div>
     </footer>
+
+    <!-- Scripts -->
     <script src="scripts.js"></script>
 </body>
 </html>
