@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-  # Define the ecosystem to manage dependency updates
+  # Define the ecosystem to manage dependency updates for npm
   - package-ecosystem: "npm" # Replace with your package manager (e.g., npm, pip, maven, etc.)
     directory: "/"           # Path to the package manifest (e.g., package.json for npm)
     schedule:
@@ -20,5 +20,5 @@ updates:
     schedule:
       interval: "daily"      # Check for updates daily
       time: "06:00"          # Optional: Time for updates (UTC)
-      
+
 # Note: Ensure all fields are correctly filled to avoid configuration errors.
