@@ -1,33 +1,78 @@
-name: "Security Analysis with Python"
+name: "Automated Code Analysis and Security Fix"
 
 on:
   push:
     branches:
-      - "main"  # Cette action sera déclenchée sur chaque push vers la branche main.
+      - "main"  # Exécute ce workflow à chaque push sur la branche principale
   pull_request:
     branches:
-      - "main"  # Cette action sera aussi déclenchée sur les pull requests vers la branche main.
+      - "main"  # Exécute ce workflow lors de la création d'une pull request
 
 jobs:
-  security-scan:
-    runs-on: ubuntu-latest  # Exécuter sur une machine virtuelle Ubuntu
+  analyze-and-fix:
+    runs-on: ubuntu-latest  # Utilisation de la machine Ubuntu
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4  # Cette étape va récupérer le code de votre dépôt GitHub.
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Récupérer le code de ton dépôt
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'  # Configurer la version de Python (ici 3.9).
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'  # Utilisation de Python 3.9 pour l'analyse
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests  # Installer la bibliothèque requests nécessaire pour notre script Python.
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests flask  # Installer des dépendances de base, ajouter d'autres selon tes besoins
 
-    - name: Run Security Scan
-      run: |
-        # Assurez-vous que votre script Python est dans le dépôt et le nom du fichier est 'security_scan.py'
-        python security_scan.py  # Exécution du script Python d'analyse de sécurité.
+      - name: Run Security Analysis Script
+        run: |
+          echo 'import os'
+          echo 'import re'
+          echo ''
+          echo 'def scan_for_vulnerabilities():'
+          echo '    with open("main.py", "r") as file:'
+          echo '        content = file.read()'
+          echo '        # Recherche des vulnérabilités SQLi simples'
+          echo '        sqli_pattern = r"(SELECT.*FROM.*WHERE.*\' OR 1=1--)"'
+          echo '        if re.search(sqli_pattern, content):'
+          echo '            print("Potential SQL Injection vulnerability detected!")'
+          echo '            fix_sql_injection()'
+          echo '        # Recherche des vulnérabilités XSS simples'
+          echo '        xss_pattern = r"(<script.*>.*</script>)"'
+          echo '        if re.search(xss_pattern, content):'
+          echo '            print("Potential XSS vulnerability detected!")'
+          echo '            fix_xss_vulnerability()'
+          echo ''
+          echo 'def fix_sql_injection():'
+          echo '    print("Fixing SQL Injection vulnerability...")'
+          echo '    with open("main.py", "r") as file:'
+          echo '        content = file.read()'
+          echo '    content = content.replace("\' OR 1=1--", "")'
+          echo '    with open("main.py", "w") as file:'
+          echo '        file.write(content)'
+          echo ''
+          echo 'def fix_xss_vulnerability():'
+          echo '    print("Fixing XSS vulnerability...")'
+          echo '    with open("main.py", "r") as file:'
+          echo '        content = file.read()'
+          echo '    content = content.replace("<script>", "&lt;script&gt;").replace("</script>", "&lt;/script&gt;")'
+          echo '    with open("main.py", "w") as file:'
+          echo '        file.write(content)'
+          echo ''
+          echo 'scan_for_vulnerabilities()' > scripts/security_scan.py
 
+      - name: Execute Security Scan Script
+        run: |
+          python ./scripts/security_scan.py  # Exécuter le script Python d'analyse et de réparation
+
+      - name: Commit and Push Fixed Code
+        run: |
+          git config --global user.email "youremail@example.com"
+          git config --global user.name "Your Name"
+          git add .  # Ajouter les modifications
+          git commit -m "Fixed vulnerabilities and improved code security"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Utiliser le token GitHub pour pousser les modifications
