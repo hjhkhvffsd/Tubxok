@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tubxok - Découvrez des vidéos pour tous les goûts.">
     <title>Tubxok - Vidéos pour tous</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- En-tête du site -->
     <header>
         <div class="header-container">
             <div class="logo">
-                <h1><a href="#accueil">Tubxok</a></h1>
+                <h1><a href="#accueil" aria-label="Aller à l'accueil">Tubxok</a></h1>
             </div>
             <nav>
                 <ul class="nav-links">
@@ -25,11 +28,13 @@
                 </ul>
             </nav>
             <div class="search-bar">
-                <input type="text" placeholder="Rechercher des vidéos..." aria-label="Rechercher">
-                <button type="submit">🔍</button>
+                <form action="/search" method="GET" role="search">
+                    <input type="text" name="q" placeholder="Rechercher des vidéos..." aria-label="Rechercher" required>
+                    <button type="submit" aria-label="Lancer la recherche">🔍</button>
+                </form>
             </div>
             <div class="user-menu">
-                <a href="#connexion" class="connexion-btn">Se connecter</a>
+                <a href="#connexion" class="connexion-btn" aria-label="Se connecter">Se connecter</a>
             </div>
         </div>
     </header>
@@ -40,17 +45,18 @@
         <section id="accueil" class="content-section">
             <h2>Accueil</h2>
             <div class="video-grid">
+                <!-- Carte vidéo -->
                 <div class="video-card">
-                    <img src="thumbnail1.jpg" alt="Vignette 1">
+                    <img src="thumbnail1.jpg" alt="Vignette vidéo : Titre de la vidéo 1">
                     <h3>Titre de la vidéo 1</h3>
                     <p>Description courte de la vidéo.</p>
                 </div>
                 <div class="video-card">
-                    <img src="thumbnail2.jpg" alt="Vignette 2">
+                    <img src="thumbnail2.jpg" alt="Vignette vidéo : Titre de la vidéo 2">
                     <h3>Titre de la vidéo 2</h3>
                     <p>Description courte de la vidéo.</p>
                 </div>
-                <!-- Ajoutez plus de vidéos ici -->
+                <!-- Plus de vidéos -->
             </div>
         </section>
 
@@ -58,13 +64,11 @@
         <section id="tendances" class="content-section">
             <h2>Tendances</h2>
             <div class="video-grid">
-                <!-- Contenu des vidéos tendances -->
                 <div class="video-card">
-                    <img src="thumbnail3.jpg" alt="Vignette tendance">
+                    <img src="thumbnail3.jpg" alt="Vignette vidéo tendance">
                     <h3>Vidéo tendance 1</h3>
                     <p>Description des tendances actuelles.</p>
                 </div>
-                <!-- Ajoutez plus de vidéos ici -->
             </div>
         </section>
 
@@ -72,13 +76,12 @@
         <section id="shorts" class="content-section">
             <h2>Shorts</h2>
             <div class="shorts-grid">
-                <!-- Shorts au format court -->
                 <div class="short-card">
-                    <video src="short1.mp4" controls></video>
+                    <video src="short1.mp4" controls aria-label="Short vidéo 1"></video>
                     <h3>Short 1</h3>
                 </div>
                 <div class="short-card">
-                    <video src="short2.mp4" controls></video>
+                    <video src="short2.mp4" controls aria-label="Short vidéo 2"></video>
                     <h3>Short 2</h3>
                 </div>
             </div>
@@ -87,27 +90,26 @@
         <!-- Section Abonnements -->
         <section id="abonnements" class="content-section">
             <h2>Vos abonnements</h2>
-            <div class="video-grid">
-                <!-- Contenu des vidéos des abonnements -->
-            </div>
+            <p>Aucune vidéo disponible dans vos abonnements pour le moment.</p>
         </section>
 
         <!-- Section Bibliothèque -->
         <section id="bibliotheque" class="content-section">
             <h2>Bibliothèque</h2>
-            <div class="video-grid">
-                <!-- Contenu de la bibliothèque -->
-            </div>
+            <p>Explorez votre bibliothèque de vidéos sauvegardées.</p>
         </section>
 
         <!-- Section Historique -->
         <section id="historique" class="content-section">
             <h2>Historique</h2>
-            <div class="video-grid">
-                <!-- Contenu de l'historique -->
-            </div>
+            <p>Revenez sur les vidéos que vous avez regardées récemment.</p>
         </section>
     </main>
+
+    <!-- Bouton retour en haut -->
+    <button id="back-to-top" aria-label="Retour en haut de la page" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        ↑
+    </button>
 
     <!-- Pied de page -->
     <footer>
@@ -120,6 +122,18 @@
             </ul>
         </div>
     </footer>
+
+    <!-- Script pour des fonctionnalités supplémentaires -->
+    <script>
+        // Script pour gérer l'apparition du bouton "Retour en haut"
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
+
 
     <!-- Scripts -->
     <script src="scripts.js"></script>
