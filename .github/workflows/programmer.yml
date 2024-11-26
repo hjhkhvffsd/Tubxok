@@ -1,0 +1,33 @@
+name: "Security Analysis with Python"
+
+on:
+  push:
+    branches:
+      - "main"  # Cette action sera déclenchée sur chaque push vers la branche main.
+  pull_request:
+    branches:
+      - "main"  # Cette action sera aussi déclenchée sur les pull requests vers la branche main.
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest  # Exécuter sur une machine virtuelle Ubuntu
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4  # Cette étape va récupérer le code de votre dépôt GitHub.
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'  # Configurer la version de Python (ici 3.9).
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests  # Installer la bibliothèque requests nécessaire pour notre script Python.
+
+    - name: Run Security Scan
+      run: |
+        # Assurez-vous que votre script Python est dans le dépôt et le nom du fichier est 'security_scan.py'
+        python security_scan.py  # Exécution du script Python d'analyse de sécurité.
+
