@@ -1,0 +1,24 @@
+# Dependabot Configuration File
+# To get started with Dependabot version updates, specify the ecosystems to update 
+# and where the package manifests are located. Refer to the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Define the ecosystem to manage dependency updates
+  - package-ecosystem: "npm" # Replace with your package manager (e.g., npm, pip, maven, etc.)
+    directory: "/"           # Path to the package manifest (e.g., package.json for npm)
+    schedule:
+      interval: "weekly"     # Update dependencies on a weekly basis
+      day: "monday"          # Optional: Set a specific day for updates
+      time: "08:00"          # Optional: Specify the time for updates (UTC)
+
+  # Add additional ecosystems or dependency managers as needed
+  # Example for GitHub Actions updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"           # Path to GitHub Actions workflows
+    schedule:
+      interval: "daily"      # Check for updates daily
+      time: "06:00"          # Optional: Time for updates (UTC)
+      
+# Note: Ensure all fields are correctly filled to avoid configuration errors.
