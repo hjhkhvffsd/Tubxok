@@ -1,66 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Affiche un message de confirmation dans la console
-    console.log('Page chargée et prête.');
+    console.log('Page entièrement chargée et prête.');
 
-    // Initialisation des fonctionnalités du site
+    // Initialisation des fonctionnalités principales du site
     initializeNavigation();
     initializeSearchBar();
     setupVideoCardHoverEffects();
 });
 
 /**
- * Initialise la navigation en ajoutant des comportements interactifs.
+ * Initialise la navigation avec des comportements interactifs et un défilement fluide.
  */
 function initializeNavigation() {
     const navLinks = document.querySelectorAll('nav ul li a');
-    
-    // Ajouter une classe active sur le lien cliqué
+
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            // Supprime la classe active des autres liens
+
+            // Gestion de la classe active
             navLinks.forEach(l => l.classList.remove('active'));
-            // Ajoute la classe active au lien cliqué
             link.classList.add('active');
-            
-            // Faites défiler jusqu'à la section correspondante
+
+            // Défilement fluide vers la section ciblée
             const targetSection = document.querySelector(link.getAttribute('href'));
             if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
 }
 
 /**
- * Initialise la barre de recherche avec un comportement basique.
+ * Initialise la barre de recherche avec des comportements utilisateurs.
  */
 function initializeSearchBar() {
     const searchInput = document.querySelector('.search-bar input');
     const searchButton = document.querySelector('.search-bar button');
 
-    // Ajouter un événement au clic du bouton
-    searchButton.addEventListener('click', () => {
+    const performSearch = () => {
         const query = searchInput.value.trim();
         if (query) {
-            console.log(`Recherche lancée pour : ${query}`);
-            // Ajoutez ici une logique de recherche, comme appeler une API ou filtrer les vidéos affichées
+            console.log(`Recherche lancée pour : "${query}"`);
+            // Ajoutez une logique de recherche (ex. appel API ou filtrage local)
         } else {
             alert('Veuillez entrer un terme de recherche.');
         }
-    });
+    };
 
-    // Gérer la recherche via la touche "Entrée"
+    // Recherche au clic du bouton
+    searchButton.addEventListener('click', performSearch);
+
+    // Recherche via la touche "Entrée"
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            searchButton.click();
+            performSearch();
         }
     });
 }
 
 /**
- * Ajoute des effets au survol des cartes vidéo.
+ * Ajoute des effets au survol des cartes vidéo pour une meilleure interactivité.
  */
 function setupVideoCardHoverEffects() {
     const videoCards = document.querySelectorAll('.video-card');
@@ -68,7 +71,7 @@ function setupVideoCardHoverEffects() {
     videoCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
             card.style.transform = 'translateY(-5px)';
-            card.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+            card.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.2)';
         });
 
         card.addEventListener('mouseleave', () => {
@@ -76,4 +79,13 @@ function setupVideoCardHoverEffects() {
             card.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
         });
     });
+}
+
+/**
+ * Fonction générique : Détecte la fin d'une animation CSS (utile pour améliorer les transitions si nécessaire).
+ * @param {HTMLElement} element - L'élément sur lequel écouter l'événement.
+ * @param {Function} callback - La fonction à exécuter une fois l'animation terminée.
+ */
+function onAnimationEnd(element, callback) {
+    element.addEventListener('animationend', callback, { once: true });
 }
