@@ -1,11 +1,12 @@
 /* Variables pour des couleurs et des styles uniformes */
 :root {
-    --primary-color: #ff0000;
-    --secondary-color: #ffffff;
-    --background-color: #f9f9f9;
-    --footer-background: #f1f1f1;
-    --text-color: #333333;
-    --font-family: 'Arial', sans-serif;
+    --primary-color: #ff0000; /* Couleur principale */
+    --secondary-color: #ffffff; /* Couleur secondaire */
+    --background-color: #f9f9f9; /* Couleur d'arrière-plan */
+    --footer-background: #f1f1f1; /* Couleur de fond du pied de page */
+    --text-color: #333333; /* Couleur du texte principal */
+    --hover-color: #ffd700; /* Couleur pour les survols */
+    --font-family: 'Arial', sans-serif; /* Police par défaut */
 }
 
 body {
@@ -17,7 +18,7 @@ body {
     line-height: 1.6;
 }
 
-/* Header */
+/* En-tête */
 header {
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -41,14 +42,7 @@ nav ul {
     display: flex;
     margin: 0;
     padding: 0;
-}
-
-nav ul li {
-    margin-right: 15px;
-}
-
-nav ul li:last-child {
-    margin-right: 0;
+    gap: 15px;
 }
 
 nav ul li a {
@@ -59,14 +53,14 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #ffd700;
+    color: var(--hover-color);
 }
 
 /* Barre de recherche dans l'en-tête */
 .search-bar {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
 }
 
 .search-bar input {
@@ -75,6 +69,12 @@ nav ul li a:hover {
     border-radius: 20px;
     outline: none;
     font-size: 1rem;
+    width: 200px;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-bar input:focus {
+    box-shadow: 0 0 8px var(--primary-color);
 }
 
 .search-bar button {
@@ -88,14 +88,15 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .search-bar button:hover {
-    background-color: #ffd700;
+    background-color: var(--hover-color);
+    transform: scale(1.1);
 }
 
-/* Main Content */
+/* Contenu principal */
 main {
     padding: 20px;
     max-width: 1200px;
@@ -188,13 +189,16 @@ footer ul li a:hover {
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;
+        align-items: center;
         gap: 10px;
     }
 
     .search-bar input {
         width: 100%;
     }
+}
 
+@media (max-width: 576px) {
     .video-grid {
         grid-template-columns: 1fr;
     }
